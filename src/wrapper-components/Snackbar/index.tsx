@@ -1,32 +1,11 @@
 import React, {FunctionComponent, memo, useEffect, useState} from "react";
-import Button from "@material-ui/core/Button";
 import SnackbarComponent from "@material-ui/core/Snackbar";
 import MuiAlert, {AlertProps} from "@material-ui/lab/Alert";
-import {makeStyles, Theme} from "@material-ui/core/styles";
-import {SnackbarProps} from "@material-ui/core/Snackbar/Snackbar";
+import {useStyles} from "../Card/style";
+import {Message, message} from "./types";
 
 function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        width: "100%",
-        "& > * + *": {
-            marginTop: theme.spacing(2)
-        }
-    }
-}));
-type Color = "success" | "info" | "warning" | "error";
-
-type message = {
-    message: string;
-    severity: Color;
-    open: boolean;
-};
-
-interface Message {
-    messageObj: message;
 }
 
 const Snackbar: FunctionComponent<Message> = ({messageObj}) => {
@@ -46,11 +25,7 @@ const Snackbar: FunctionComponent<Message> = ({messageObj}) => {
         };
     }, [messageObj]);
 
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
-        if (reason === "clickaway") {
-            return;
-        }
-
+    const handleClose = () => {
         setIsOpen(false);
     };
 

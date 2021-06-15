@@ -1,5 +1,4 @@
 import React, {memo} from "react";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import {ButtonProps} from "@material-ui/core/Button/Button";
 import ButtonComponent from "@material-ui/core/Button";
 
