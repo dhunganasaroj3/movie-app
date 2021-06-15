@@ -1,4 +1,4 @@
-const string: (arg1) => string = (object) => JSON.stringify(object);
+const string: (object) => string = (object) => JSON.stringify(object);
 
 const runEncryption = (value: string) =>
     string(
@@ -14,7 +14,7 @@ export const encryptAndSave: (key: string, value: {id: string; title: string}[])
     localStorage.setItem(runEncryption(key), runEncryption(string(value)));
 };
 
-export const removeItem: (arg1: string) => void = (key: string) => {
+export const removeItem: (key: string) => void = (key: string) => {
     localStorage.removeItem(runEncryption(key));
 };
 

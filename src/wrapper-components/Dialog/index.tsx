@@ -1,17 +1,12 @@
 import React, {FC, memo} from "react";
 import DialogComponent from "@material-ui/core/Dialog";
 import {DialogTitle} from "@material-ui/core";
-
-type maxWidth = "xs" | "sm" | "md" | "lg" | "xl" | false;
-
-interface DialogProp {
-    onClose: (arg) => void;
-    open: boolean;
-    children: JSX.Element | JSX.Element[];
-    maxWidth?: maxWidth;
-}
+import {Close} from "@material-ui/icons";
+import {useStyles} from "./style";
+import {DialogProp} from "./types";
 
 const Dialog: FC<DialogProp> = ({maxWidth, onClose, open, children}) => {
+    const classes = useStyles();
     const handleClose = () => {
         onClose(false);
     };
@@ -25,11 +20,7 @@ const Dialog: FC<DialogProp> = ({maxWidth, onClose, open, children}) => {
         >
             <DialogTitle id="simple-dialog-title">
                 <div>
-                    <img
-                        onClick={handleClose}
-                        src="https://d30y9cdsu7xlg0.cloudfront.net/png/53504-200.png"
-                        style={{cursor: "pointer", float: "right", marginTop: "5px", width: "20px"}}
-                    />
+                    <Close className={classes.closeIcon} onClick={handleClose} />
                 </div>
             </DialogTitle>
             {children}

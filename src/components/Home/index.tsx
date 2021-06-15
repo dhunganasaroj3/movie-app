@@ -4,10 +4,10 @@ import Card from "../../wrapper-components/Card";
 import {CardMedia, CircularProgress, Grid} from "@material-ui/core";
 import {useStyles} from "./style";
 import Typography from "@material-ui/core/Typography";
-import Button from "src/wrapper-components/Button";
+import Button from "../../wrapper-components/Button";
 import {decryptEncryption, encryptAndSave} from "../../utils/useLocalStorage";
 import Snackbar from "../../wrapper-components/Snackbar";
-import {Message, Selected, MovieDetail, Movie, MovieDetailData} from "components/Home/types";
+import {Message, Selected, MovieDetail, Movie, MovieDetailData} from "./types";
 import getMoviesList from "../../utils/mokeData";
 import Dialog from "../../wrapper-components/Dialog";
 

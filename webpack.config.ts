@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import {TsconfigPathsPlugin} from "tsconfig-paths-webpack-plugin";
 import Dotenv from "dotenv-webpack";
+const CompressionPlugin = require("compression-webpack-plugin");
 
 const webpackConfig = (env): Configuration => ({
     entry: "./src/index.tsx",
@@ -40,8 +41,14 @@ const webpackConfig = (env): Configuration => ({
         }),
         new ForkTsCheckerWebpackPlugin({
             eslint: {
-                files: "./src/**/*.{ts,tsx,js,jsx}" // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
+                files: "./src/**/*.{ts,tsx,js,jsx}"
             }
+        }),
+        new CompressionPlugin({
+            algorithm: "gzip",
+            test: /\.js$|\.css$|\.html$/,
+            threshold: 10240,
+            minRatio: 0.8
         })
     ]
 });
