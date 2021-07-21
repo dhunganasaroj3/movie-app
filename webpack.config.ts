@@ -7,7 +7,10 @@ import Dotenv from "dotenv-webpack";
 const CompressionPlugin = require("compression-webpack-plugin");
 
 const webpackConfig = (env): Configuration => ({
-    entry: "./src/index.tsx",
+    entry: {
+        index: "./src/index.tsx",
+        app: "./src/app.tsx"
+    },
     ...(env.production || !env.development ? {} : {devtool: "eval-source-map"}),
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
@@ -15,7 +18,7 @@ const webpackConfig = (env): Configuration => ({
     },
     output: {
         path: path.join(__dirname, "/build"),
-        filename: "build.js"
+        filename: "build.[contenthash].bundle.js"
     },
     module: {
         rules: [
@@ -25,13 +28,14 @@ const webpackConfig = (env): Configuration => ({
                 options: {
                     transpileOnly: true
                 },
-                exclude: /dist/
+                exclude: /build/
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./public/index.html"
+            template: "./public/index.html",
+            title: 'Caching'
         }),
         new Dotenv(),
         new webpack.DefinePlugin({
