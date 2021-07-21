@@ -9,7 +9,6 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const webpackConfig = (env): Configuration => ({
     entry: {
         index: "./src/index.tsx",
-        app: "./src/app.tsx"
     },
     ...(env.production || !env.development ? {} : {devtool: "eval-source-map"}),
     resolve: {
